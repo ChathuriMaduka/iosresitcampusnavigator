@@ -18,6 +18,7 @@ struct SignUpView: View {
     @State private var isPasswordVisible = false
     @State private var isConfirmPasswordVisible = false
     @State private var navigateToLogin = false
+    @State private var ShowSignInView = false
 
     var body: some View {
        
@@ -123,15 +124,22 @@ HStack {
                    .font(.subheadline)
                    .foregroundColor(Color.appTextGray)
                
-               Button(action: loginAction) {
+               Button(action: {
+                   ShowSignInView = true
+               })
+               {
                    Text("Sign In")
                        .font(.subheadline)
                        .fontWeight(.medium)
                        .foregroundColor(Color.appPrimaryBlue)
+                   
                }
            }
            .padding(.top, 16)
-           
+           .navigationBarHidden(true)
+          .sheet(isPresented: $ShowSignInView) {
+          SignInView()
+                                      }
         
            Spacer()
                .frame(height: 40)
