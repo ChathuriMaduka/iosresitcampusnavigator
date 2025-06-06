@@ -41,19 +41,15 @@ VStack(spacing: 0) {
             .frame(height: min(280, geometry.size.height * 0.35))
         
         Text("Sign In")
-        
-        
-            .font(.largeTitle)
-            
-            .bold()
-            .foregroundColor(.white)
-            .padding(.bottom, 60)
+            .font(.system(size: 40, weight: .bold, design: .default))
+            .foregroundColor(.appWhite)
+            .tracking(3)
+
+        Spacer()
     }
                                 
 VStack(spacing: 20) {
     Spacer().frame(height: 16)
-                                    
-// Username Field
 HStack {
     Image(systemName: "person.fill")
         .foregroundColor(Color.appPrimaryBlue)
@@ -73,7 +69,6 @@ HStack {
         .stroke(getFieldBorderColor(for: .name), lineWidth: 1)
 )
                                     
-// Password Field
 HStack {
     Image(systemName: "lock.fill")
     .foregroundColor(Color.appPrimaryBlue)
@@ -127,10 +122,8 @@ Button(action: {
 .cornerRadius(10)
 }
 .disabled(!isFormValid() || isLoading)
-
-// Create New Account Button
 Button(action: {
-    // Handle create new account
+    
     showCreateAccountAlert()
 })
 {

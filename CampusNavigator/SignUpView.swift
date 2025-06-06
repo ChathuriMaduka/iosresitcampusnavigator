@@ -38,12 +38,18 @@ Color.appPrimaryBlue
 VStack {
    Spacer()
    
+    VStack {
+        Spacer()
+
+        Text("Sign Up")
+            .font(.system(size: 40, weight: .bold, design: .default))
+            .foregroundColor(.appWhite)
+            .tracking(3)
+
+        Spacer()
+    }
   
-       Text("Sign Up")
-           .font(.largeTitle)
-           .fontWeight(.semibold)
-           .foregroundColor(Color.appWhite)
-           .padding(.bottom, 40)
+      
    }
    .frame(height: min(280, geometry.size.height * 0.35))
 }

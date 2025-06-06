@@ -7,20 +7,17 @@
 
 import SwiftUI
 extension Color {
-    // MARK: - App Colors
     static let appPrimaryBlue = Color(hex: "0A4F9A")
     static let appBackgroundGray = Color(hex: "F9FAFB")
     static let appWhite = Color.white
     static let appBlack = Color.black
     
-    // MARK: - Secondary Colors
     static let appLightBlue = Color(hex: "83BBF3")
     static let appRed = Color(hex: "E94040")
     static let appLightRed = Color(hex: "E94040") // Note: Same as red, you may want to adjust
     static let appDarkYellow = Color(hex: "EAD726")
     static let appLightYellow = Color(hex: "F2DC11")
     
-    // MARK: - Additional Colors (you can add more as needed)
     static let appLightGray = Color(hex: "F5F5F5")
     static let appDarkGray = Color(hex: "8E8E93")
     static let appBorderGray = Color(hex: "D1D1D6")
@@ -29,7 +26,6 @@ extension Color {
     static let appError = Color(hex: "FF3B30")
     static let appWarning = Color(hex: "FF9500")
     
-    // MARK: - Hex Color Initializer
     init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int: UInt64 = 0
