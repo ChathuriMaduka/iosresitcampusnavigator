@@ -139,7 +139,7 @@ struct SignInView: View {
                             
                             .navigationBarHidden(true)
                             .sheet(isPresented: $showSignUP) {
-                                // Replace with your navigation view file name
+                                
                                 SignUpView()
                             }
                             
@@ -182,7 +182,7 @@ struct SignInView: View {
         .alert(alertTitle, isPresented: $showAlert) {
             Button("OK") {
                 if isLoginSuccessful {
-                    // Handle successful login navigation here
+                    
                     print("Navigate to main app")
                 }
             }
