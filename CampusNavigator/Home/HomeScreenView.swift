@@ -9,9 +9,14 @@ import SwiftUI
 
 struct HomeScreenView: View {
     @State private var searchText = ""
+    @State private var selectedBottomTab = 0
+    @State private var showHome = false
+    @State private var showLocation = false
+    @State private var showFacility = false
+    @State private var showProfile = false
+    @State private var showNotification = false
    // @StateObject private var campusData = CampusData()
-    @State private var isNavigating = false
-    
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -35,8 +40,55 @@ struct HomeScreenView: View {
             }
             .background(Color.appBackgroundGray.ignoresSafeArea())
             .navigationBarHidden(true)
+            
+            
+            .fullScreenCover(isPresented: $showHome) {
+                HomeScreenView()
+            }
+            .fullScreenCover(isPresented: $showNotification) {
+                NotificationUIView()
+            }
+            .fullScreenCover(isPresented: $showFacility) {
+                FacilityUIView()
+            }
+            .fullScreenCover(isPresented: $showProfile) {
+                ProfileDetailsView()
+            }
+            
+            
         }
+        
+                        Spacer()
+                        BotemNavigationBarUIView(selectedTab: $selectedBottomTab) { index in
+                            handleBottomTabSelection(index)
+                        }
+                    
     }
+    private func handleBottomTabSelection(_ index: Int) {
+         print("Bottom tab selected: \(index)")
+         
+         switch index {
+         case 0: // home
+             print("Already on Home")
+             showHome = false
+             
+         case 1: // notification
+             print("Navigate to notification")
+             showNotification = true
+         case 2: // Location
+             print("Navigate to Location")
+             
+         case 3: // facilities
+             print("Navigate to facility")
+             showFacility = true
+             
+         case 4: // Profile
+             print("Navigate to Profile")
+             showProfile = true
+         default:
+             break
+         }
+     }
     
     private var headerSection: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -252,6 +304,14 @@ struct QuickAccessHallCard: View {
     let imageName: String
     let onQuickTour: () -> Void
     
+    @State private var selectedBottomTab = 0
+    @State private var isNavigating = false
+    @State private var showHome = false
+    @State private var showLocation = false
+    @State private var showFacilityDetail = false
+    @State private var showProfile = false
+    
+    
     var body: some View {
         ZStack {
             // Background image covering the entire card
@@ -296,8 +356,16 @@ struct QuickAccessHallCard: View {
             }
             .padding(16)
         }
+
         .shadow(color: Color.appBlack.opacity(0.08), radius: 4, x: 0, y: 2)
+        
+
+
     }
+    
+    
+ 
+
 }
 #Preview {
     HomeScreenView()
