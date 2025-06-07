@@ -10,7 +10,8 @@ import SwiftUI
 struct LibraryView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var showNavigationPage = false
-        @State private var showSeatBookingPage = false
+    @State private var showSeatBookingPage = false
+    @State private var showFacility = false
     var body: some View {
         
         ZStack {
@@ -23,7 +24,7 @@ struct LibraryView: View {
                            
                              HStack {
                                  Button(action: {
-                                     presentationMode.wrappedValue.dismiss()
+                                     showFacility = true
                                  }) {
                                      Image(.image2)
                                          .font(.system(size: 18, weight: .semibold))
@@ -202,13 +203,15 @@ struct LibraryView: View {
                                  }
                              }
                              .navigationBarHidden(true)
+                             .fullScreenCover(isPresented: $showFacility) {
+                                 FacilityUIView()
+                             }
                              .sheet(isPresented: $showNavigationPage) {
                                  // Replace with your navigation view file name
                                  //YourNavigationView()
                              }
-                             .sheet(isPresented: $showSeatBookingPage) {
-                                 // Replace with your seat booking view file name
-                                // YourSeatBookingView()
+                             .fullScreenCover(isPresented: $showSeatBookingPage) {
+                                 LibraryBookingUIView()
                              }
         
     }
