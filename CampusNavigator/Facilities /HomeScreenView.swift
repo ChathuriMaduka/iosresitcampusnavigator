@@ -98,25 +98,13 @@ struct HomeScreenView: View {
         VStack(alignment: .leading, spacing: 16) {
             ZStack {
                
-                AsyncImage(url: URL(string: "campus_building_image")) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(height: 160)
-                        .clipped()
-                } placeholder: {
-                    
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(
-                            LinearGradient(
-                                colors: [.appPrimaryBlue, .appLightBlue],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                        .frame(height: 160)
-                }
-                .cornerRadius(16)
+                
+                Image(.image6) 
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(height: 160)
+                                    .clipped()
+                                    .cornerRadius(16)
                 
                 
                 RoundedRectangle(cornerRadius: 16)
@@ -265,68 +253,52 @@ struct QuickAccessHallCard: View {
     let onQuickTour: () -> Void
     
     var body: some View {
-        HStack(spacing: 16) {
+        ZStack {
+            // Background image covering the entire card
+            Image(.image7)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(height: 80)
+                .clipped()
+                .cornerRadius(16)
             
-//            AsyncImage(url: URL(string: imageName)) { image in
-//                image
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fill)
-//                    .frame(width: 80, height: 60)
-//                    .clipped()
-//            } placeholder: {
-//                
-//                RoundedRectangle(cornerRadius: 12)
-//                    .fill(
-//                        LinearGradient(
-//                            colors: [.appTextGray.opacity(0.3), .appTextGray.opacity(0.1)],
-//                            startPoint: .topLeading,
-//                            endPoint: .bottomTrailing
-//                        )
-//                    )
-//                    .frame(width: 80, height: 60)
-//                    .overlay(
-//                        Image( "image")
-//                            .font(.appTitle3Regular)
-//                            .foregroundColor(.appTextGray)
-//                    )
-//            }
-//            .cornerRadius(12)
+            // Dark overlay for better text readability
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.black.opacity(0.4))
+                .frame(height: 80)
             
-            VStack(alignment: .leading, spacing: 4) {
-                Text(hallName)
-                    .font(.appHeadlineSemibold)
-                    .foregroundColor(.appBlack)
+            // Content overlay
+            HStack(spacing: 16) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(hallName)
+                        .font(.appHeadlineSemibold)
+                        .foregroundColor(.appWhite)
+                    Text(floorName)
+                        .font(.appSubheadlineRegular)
+                        .foregroundColor(.appWhite.opacity(0.8)) 
+                }
                 
-                Text(floorName)
-                    .font(.appSubheadlineRegular)
-                    .foregroundColor(.appTextGray)
+                Spacer()
+                
+                NavigationLink {
+                    //MapScreenView()
+                } label: {
+                    Text("Quick Tour")
+                        .font(.appCaptionBold)
+                        .foregroundColor(.appWhite)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(Color.appPrimaryBlue)
+                        .cornerRadius(20)
+                        .shadow(color: Color.appPrimaryBlue.opacity(0.3), radius: 2, x: 0, y: 1)
+                }
+                .buttonStyle(PlainButtonStyle())
             }
-            
-            Spacer()
-            
-            
-            NavigationLink {
-                //MapScreenView()
-            } label: {
-                Text("Quick Tour")
-                    .font(.appCaptionBold)
-                    .foregroundColor(.appWhite)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                    .background(Color.appPrimaryBlue)
-                    .cornerRadius(20)
-                    .shadow(color: Color.appPrimaryBlue.opacity(0.3), radius: 2, x: 0, y: 1)
-            }
-            .buttonStyle(PlainButtonStyle())
+            .padding(16)
         }
-        .padding(16)
-        .background(Color.appWhite)
-        .cornerRadius(16)
         .shadow(color: Color.appBlack.opacity(0.08), radius: 4, x: 0, y: 2)
     }
 }
-
-
 #Preview {
     HomeScreenView()
 }
