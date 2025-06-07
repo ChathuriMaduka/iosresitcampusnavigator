@@ -20,7 +20,7 @@ struct BotemNavigationBarUIView: View {
     @Binding var selectedTab: Int
     let onTabSelected: (Int) -> Void
         
-    private let icons = ["bell.fill", "house.fill", "location.fill", "list.bullet.rectangle", "person.fill"]
+    private let icons = [ "house.fill","bell.fill", "location.fill", "list.bullet.rectangle", "person.fill"]
     
     var body: some View {
         
