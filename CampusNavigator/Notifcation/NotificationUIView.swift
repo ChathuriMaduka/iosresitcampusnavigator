@@ -10,13 +10,14 @@ import SwiftUI
 
 struct NotificationUIView: View {
     @State private var selectedTab = 0
-    @State private var selectedBottomTab = 0
+    @State private var selectedBottomTab = 1
     @Environment(\.presentationMode) var presentationMode
     
     @State private var showHome = false
     @State private var showLocation = false
-    @State private var showFacilityDetail = false
+    @State private var showFacility = false
     @State private var showProfile = false
+    @State private var showNotification = false
     
     @State private var showNotificationDetail = false
     @State private var selectedNotification: NotificationItem?
@@ -186,13 +187,20 @@ struct NotificationUIView: View {
                                           UINavigationBar.appearance().scrollEdgeAppearance = appearance
                    }
             
+                                      .fullScreenCover(isPresented: $showHome) {
+                                          HomeScreenView()
+                                      }
+                                      .fullScreenCover(isPresented: $showNotification) {
+                                          NotificationUIView()
+                                      }
+                                      .fullScreenCover(isPresented: $showFacility) {
+                                          FacilityUIView()
+                                      }
+                                      .fullScreenCover(isPresented: $showProfile) {
+                                          ProfileDetailsView()
+                                      }
             
-
-
-                                                  .sheet(isPresented: $showFacilityDetail) {
-                                                      FacilityDetailView()
-                                                  }
-            
+                        
 
                }
         
@@ -235,21 +243,23 @@ struct NotificationUIView: View {
                print("Bottom tab selected: \(index)")
                
                switch index {
-               case 0: // Notifications
-                   print("Already on Notifications")
+               case 0: // home
+                   print("Navigate  on Home")
+                   showHome = true
                    
-               case 1: // Home
-                   print("Navigate to Home")
+               case 1: // notification
+                   print("already notification")
+                   showNotification = false
                case 2: // Location
                    print("Navigate to Location")
                    
                case 3: // facilities
                    print("Navigate to facility")
-                   showFacilityDetail = true
+                   showFacility = true
                    
                case 4: // Profile
-                   
                    print("Navigate to Profile")
+                   showProfile = true
                default:
                    break
                }
