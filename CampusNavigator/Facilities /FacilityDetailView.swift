@@ -10,7 +10,8 @@ import SwiftUI
 struct FacilityDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var showNavigationPage = false
-        @State private var showSeatBookingPage = false
+    @State private var showSeatBookingPage = false
+    @State private var showFacility = false
     
     var body: some View {
         
@@ -24,7 +25,7 @@ struct FacilityDetailView: View {
                            
                              HStack {
                                  Button(action: {
-                                     presentationMode.wrappedValue.dismiss()
+                                     showFacility = true
                                  }) {
                                      Image(.image2)
                                          .font(.system(size: 18, weight: .semibold))
@@ -203,14 +204,17 @@ struct FacilityDetailView: View {
                                  }
                              }
                              .navigationBarHidden(true)
+                             .fullScreenCover(isPresented: $showFacility) {
+                                 FacilityUIView()
+                             }
                              .sheet(isPresented: $showNavigationPage) {
                                  // Replace with your navigation view file name
                                  //YourNavigationView()
                              }
-                             .sheet(isPresented: $showSeatBookingPage) {
-                                 // Replace with your seat booking view file name
-                                // YourSeatBookingView()
+                             .fullScreenCover(isPresented: $showSeatBookingPage) {
+                                 SeatBookingUIView()
                              }
+        
         
     }
     
