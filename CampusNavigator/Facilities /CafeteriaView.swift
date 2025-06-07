@@ -47,7 +47,7 @@ struct CafeteriaView: View {
                              Image(.cafe)
                                  .resizable()
                                  .aspectRatio(contentMode: .fill)
-                                 .frame(height: 250)
+                                 .frame(height: 220)
                                  .clipped()
                                  .cornerRadius(16)
                                  .padding(.horizontal, 16)
