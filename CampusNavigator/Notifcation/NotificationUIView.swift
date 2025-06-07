@@ -17,6 +17,9 @@ struct NotificationUIView: View {
     @State private var showLocation = false
     @State private var showFacilityDetail = false
     @State private var showProfile = false
+    
+    @State private var showNotificationDetail = false
+    @State private var selectedNotification: NotificationItem?
 
 
     
@@ -126,6 +129,22 @@ struct NotificationUIView: View {
                            .padding(.top, 30)
                            
                        }
+                       if showNotificationDetail {
+                                           Color.black.opacity(0.8)
+                               .ignoresSafeArea(.all)
+                                               .onTapGesture {
+                                                   dismissPopup()
+                                               }
+                                               .zIndex(1)
+                                           
+                           NotificationPopupUIView(
+                                               notification: selectedNotification,
+                                               isPresented: $showNotificationDetail
+                                           )
+                                           .transition(.scale.combined(with: .opacity))
+                                           .animation(.spring(response: 0.5, dampingFraction: 0.8), value: showNotificationDetail)
+                                           .zIndex(2)
+                                       }
                        BotemNavigationBarUIView(selectedTab: $selectedBottomTab) { index in
                            handleBottomTabSelection(index)
                        }
@@ -133,6 +152,7 @@ struct NotificationUIView: View {
                        Spacer()
 
                    }
+            
             
                    .navigationTitle("Notifications")
                                       .navigationBarTitleDisplayMode(.inline)
@@ -165,11 +185,14 @@ struct NotificationUIView: View {
                                           UINavigationBar.appearance().standardAppearance = appearance
                                           UINavigationBar.appearance().scrollEdgeAppearance = appearance
                    }
+            
+            
 
 
                                                   .sheet(isPresented: $showFacilityDetail) {
                                                       FacilityDetailView()
                                                   }
+            
 
                }
         
@@ -192,18 +215,18 @@ struct NotificationUIView: View {
                    private func handleViewMoreTapped(for notification: NotificationItem) {
                        print("View more tapped for: \(notification.title)")
                        
-                       switch notification.type {
-                      case .alert:
-                           print("Handling alert notification action")
-                       case .warning:
-                           print("Handling warning notification action")
-                       case .info:
-                           print("Handling info notification action")
-                       case .success:
-                           print("Handling success notification action")
-                       }
+                       selectedNotification = notification
+                              withAnimation(.easeInOut(duration: 0.3)) {
+                                  showNotificationDetail = true
+                              }
                        
-           }
+                  }
+    private func dismissPopup() {
+        withAnimation(.easeInOut(duration: 0.3)) {
+            showNotificationDetail = false
+        }
+    }
+    
            private func handleBottomTabSelection(_ index: Int) {
                
 
