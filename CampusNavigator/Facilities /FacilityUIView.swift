@@ -132,23 +132,29 @@ struct FacilityUIView: View {
                    }
             
             
-                                      .sheet(isPresented: $showFacility) {
+                                      .fullScreenCover(isPresented: $showFacility) {
                                           FacilityUIView()
                                       }
-                                      .sheet(isPresented: $showFacilityDetail) {
+                                      .fullScreenCover(isPresented: $showFacilityDetail) {
                                           FacilityDetailView()
                                       }
                                                          
-                                      .sheet(isPresented: $showLibraryView) {
+                                      .fullScreenCover(isPresented: $showLibraryView) {
                                             LibraryView()
                                        }
                                                          
-                                      .sheet(isPresented: $showCafeteriaView) {
+                                      .fullScreenCover(isPresented: $showCafeteriaView) {
                                             CafeteriaView()
                                        }
-                                     .sheet(isPresented: $showNotification) {
-                                            NotificationUIView()
-                                       }
+                                     .fullScreenCover(isPresented: $showHome) {
+                                         HomeScreenView()
+                                     }
+                                     .fullScreenCover(isPresented: $showNotification) {
+                                         NotificationUIView()
+                                     }
+                                     .fullScreenCover(isPresented: $showProfile) {
+                                         ProfileDetailsView()
+                                     }
 
                }
     }
@@ -187,20 +193,20 @@ print("Bottom tab selected: \(index)")
 
 switch index {
 case 0: // home
-    print("Navigate to Location")
+    showHome = true
     
 case 1: // notification
     showNotification = true
     
 case 2: // Location
-    print("Navigate to Location")
+    showLocation = true
     
 case 3: // facilities
     showFacility = false
 
-case 4: // Profile
-    
-    print("Navigate to Profile")
+case 4:
+    showProfile = true// Profile
+
 default:
     break
 }
