@@ -18,6 +18,10 @@ struct FacilityUIView: View {
     @State private var showProfile = false
     @State private var showFacility = false
     
+    @State private var showFacilityDetail = false
+    @State private var showLibraryView = false
+    @State private var showCafeteriaView = false
+    
     let facilities = [
         FacilityItem(
             title: "iOS Lab",
@@ -102,7 +106,6 @@ struct FacilityUIView: View {
                                       .toolbar {
                                           ToolbarItem(placement: .navigationBarLeading) {
                                               Button(action: {
-                                                  // add Navigate back to home screen
                                                   presentationMode.wrappedValue.dismiss()
                                               }) {
                                                   HStack(spacing: 4) {
@@ -132,11 +135,20 @@ struct FacilityUIView: View {
                                       .sheet(isPresented: $showFacility) {
                                           FacilityUIView()
                                       }
-
-
-                                                  .sheet(isPresented: $showNotification) {
-                                                      NotificationUIView()
-                                                  }
+                                      .sheet(isPresented: $showFacilityDetail) {
+                                          FacilityDetailView()
+                                      }
+                                                         
+                                      .sheet(isPresented: $showLibraryView) {
+                                            LibraryView()
+                                       }
+                                                         
+                                      .sheet(isPresented: $showCafeteriaView) {
+                                            CafeteriaView()
+                                       }
+                                     .sheet(isPresented: $showNotification) {
+                                            NotificationUIView()
+                                       }
 
                }
     }
@@ -153,14 +165,24 @@ struct FacilityUIView: View {
         }
     }
     private func handleViewMoreTapped(for facility: FacilityItem) {
-        print("View more tapped for:")
+        switch facility.title {
+                case "iOS Lab", "Network Lab", "IOT Lab":
+                    showFacilityDetail = true
+                    
+                case "Library":
+                    showLibraryView = true
+                    
+                case "Cafeteria":
+                    showCafeteriaView = true
+                    
+                default:
+                    print("Unknown facility: \(facility.title)")
+                }
+
         
 }
 private func handleBottomTabSelection(_ index: Int) {
-
-
-
-
+    
 print("Bottom tab selected: \(index)")
 
 switch index {
