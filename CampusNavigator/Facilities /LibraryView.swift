@@ -45,7 +45,7 @@ struct LibraryView: View {
                      ScrollView {
                          VStack(spacing: 10) {
                              
-                             Image(.image1)
+                             Image(.library)
                                  .resizable()
                                  .aspectRatio(contentMode: .fill)
                                  .frame(height: 250)
