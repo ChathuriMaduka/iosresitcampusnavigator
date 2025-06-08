@@ -138,6 +138,9 @@ struct FacilityUIView: View {
                                       .fullScreenCover(isPresented: $showFacilityDetail) {
                                           FacilityDetailView()
                                       }
+                                      .fullScreenCover(isPresented: $showLocation) {
+                                         CampusNavigationView()
+                                      }
                                                          
                                       .fullScreenCover(isPresented: $showLibraryView) {
                                             LibraryView()
@@ -155,6 +158,8 @@ struct FacilityUIView: View {
                                      .fullScreenCover(isPresented: $showProfile) {
                                          ProfileDetailsView()
                                      }
+            
+            
 
                }
     }

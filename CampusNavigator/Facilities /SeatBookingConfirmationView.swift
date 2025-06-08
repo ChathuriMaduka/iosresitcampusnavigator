@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct SeatBookingConfirmationView: View {
+    @State private var showHome = false
     var body: some View {
+        
         GeometryReader { geometry in
                    ZStack {
                        // Background with subtle pattern
@@ -47,7 +49,7 @@ struct SeatBookingConfirmationView: View {
                            
                            // Back to Home Button
                            Button(action: {
-                               // Handle back to home action
+                               showHome = true
                                print("Back to Home tapped")
                            }) {
                                Text("Back to Home")
@@ -70,6 +72,11 @@ struct SeatBookingConfirmationView: View {
                            .padding(.bottom, 50)
                        }
                    }
+        .fullScreenCover(isPresented: $showHome) {
+            HomeScreenView()
+        }
+        
+        
                }
            }
            
@@ -77,6 +84,9 @@ struct SeatBookingConfirmationView: View {
                let colors: [Color] = [.yellow, .orange, .red, .pink, .purple, .blue, .teal, .green]
                return colors[index % colors.count]
            }
+
+
+    
        
 
        struct ConfettiShape: Shape {

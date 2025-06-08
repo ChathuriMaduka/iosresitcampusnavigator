@@ -199,6 +199,9 @@ struct NotificationUIView: View {
                                       .fullScreenCover(isPresented: $showProfile) {
                                           ProfileDetailsView()
                                       }
+                                      .fullScreenCover(isPresented: $showLocation) {
+                                          CampusNavigationView()
+                                      }
             
                         
 
@@ -250,7 +253,9 @@ struct NotificationUIView: View {
                case 1: // notification
                    print("already notification")
                    showNotification = false
-               case 2: // Location
+               case 2:
+                   // Location
+                   showLocation = true
                    print("Navigate to Location")
                    
                case 3: // facilities

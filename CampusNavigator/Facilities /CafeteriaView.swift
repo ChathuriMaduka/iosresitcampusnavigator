@@ -203,7 +203,7 @@ struct CafeteriaView: View {
                              .navigationBarHidden(true)
                              .sheet(isPresented: $showNavigationPage) {
                                  // Replace with your navigation view file name
-                                 //YourNavigationView()
+                                 CampusNavigationView()
                              }
                              .fullScreenCover(isPresented: $showFacility) {
                                  FacilityUIView()

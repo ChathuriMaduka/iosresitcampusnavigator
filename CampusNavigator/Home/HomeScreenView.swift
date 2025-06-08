@@ -54,6 +54,9 @@ struct HomeScreenView: View {
             .fullScreenCover(isPresented: $showProfile) {
                 ProfileDetailsView()
             }
+            .fullScreenCover(isPresented: $showLocation) {
+                CampusNavigationView()
+            }
             
             
         }
@@ -76,6 +79,7 @@ struct HomeScreenView: View {
              print("Navigate to notification")
              showNotification = true
          case 2: // Location
+             showLocation = true
              print("Navigate to Location")
              
          case 3: // facilities
@@ -177,7 +181,7 @@ struct HomeScreenView: View {
                     
                    
                     NavigationLink {
-                     //   ContentView()
+                        CampusNavigationView()
                     } label: {
                         HStack(spacing: 8) {
                             Image("")
@@ -341,7 +345,7 @@ struct QuickAccessHallCard: View {
                 Spacer()
                 
                 NavigationLink {
-                    //MapScreenView()
+                    CampusNavigationView()
                 } label: {
                     Text("Quick Tour")
                         .font(.appCaptionBold)

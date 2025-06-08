@@ -209,7 +209,7 @@ struct FacilityDetailView: View {
                              }
                              .sheet(isPresented: $showNavigationPage) {
                                  // Replace with your navigation view file name
-                                 //YourNavigationView()
+                                 CampusNavigationView()
                              }
                              .fullScreenCover(isPresented: $showSeatBookingPage) {
                                  SeatBookingUIView()

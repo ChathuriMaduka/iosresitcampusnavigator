@@ -207,8 +207,7 @@ struct LibraryView: View {
                                  FacilityUIView()
                              }
                              .sheet(isPresented: $showNavigationPage) {
-                                 // Replace with your navigation view file name
-                                 //YourNavigationView()
+                                 CampusNavigationView()
                              }
                              .fullScreenCover(isPresented: $showSeatBookingPage) {
                                  LibraryBookingUIView()
